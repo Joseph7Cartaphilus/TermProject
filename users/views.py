@@ -40,12 +40,6 @@ def register(request: HttpRequest) -> HttpResponse:
     })
 
 
-def logout(request: HttpRequest) -> HttpResponse:
-    """Функция для выхода из системы"""
-    auth.logout(request)
-    return HttpResponseRedirect(reverse('/'))
-
-
 @login_required
 def profile(request: HttpRequest) -> HttpResponse:
     """Функция для авторизации пользователя профиль"""
