@@ -5,6 +5,7 @@ from users.models import User
 
 
 class UserLoginForm(AuthenticationForm):
+    """Форма для аутентификации пользователей"""
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your username', }))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Input your password'}))
 
@@ -19,6 +20,7 @@ class UserLoginForm(AuthenticationForm):
 
 
 class UserRegistrationForm(UserCreationForm):
+    """Форма для регистрации пользователей"""
     first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your name'}))
     last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your surname'}))
     username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your username'}))
@@ -37,6 +39,7 @@ class UserRegistrationForm(UserCreationForm):
 
 
 class UserProfileForm(UserChangeForm):
+    """Форма для авторизации пользователей профиль"""
     username = forms.CharField(widget=forms.TextInput(attrs={'readonly': True}))
     email = forms.CharField(widget=forms.EmailInput(attrs={'readonly': True}))
     image = forms.ImageField(widget=forms.FileInput(), required=False)

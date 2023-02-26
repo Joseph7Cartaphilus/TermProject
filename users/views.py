@@ -1,4 +1,5 @@
 from django.shortcuts import render, HttpResponseRedirect
+from django.http import HttpResponse, HttpRequest
 from django.urls import reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
@@ -6,7 +7,8 @@ from django.contrib.auth.decorators import login_required
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 
 
-def login(request):
+def login(request: HttpRequest) -> HttpResponse:
+    """Функция для аутентификации пользователя"""
     if request.method == 'POST':
         form = UserLoginForm(data=request.POST)
         if form.is_valid():
@@ -23,7 +25,8 @@ def login(request):
     })
 
 
-def register(request):
+def register(request: HttpRequest) -> HttpResponse:
+    """Функция для регистрации пользователя"""
     if request.method == 'POST':
         form = UserRegistrationForm(data=request.POST)
         if form.is_valid():
@@ -37,13 +40,15 @@ def register(request):
     })
 
 
-def logout(request):
+def logout(request: HttpRequest) -> HttpResponse:
+    """Функция для выхода из системы"""
     auth.logout(request)
     return HttpResponseRedirect(reverse('/'))
 
 
 @login_required
-def profile(request):
+def profile(request: HttpRequest) -> HttpResponse:
+    """Функция для авторизации пользователя профиль"""
     if request.method == 'POST':
         form = UserProfileForm(data=request.POST, files=request.FILES, instance=request.user)
         if form.is_valid():

@@ -7,6 +7,7 @@ from .models import User
 
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
+    """Модель пользователя для Административной панели"""
     model = User
     readonly_fields = ('date_joined', 'last_login', 'is_active', 'get_image')
     list_display_links = ('email', 'username')
@@ -56,6 +57,7 @@ class UserAdmin(DjangoUserAdmin):
     )
 
     def get_image(self, obj):
+        """Вывод изображений в административной панели"""
         return mark_safe(f'<img src={obj.image.url} width="50" height="60"')
 
     get_image.short_description = "Avatar"
