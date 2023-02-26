@@ -39,7 +39,15 @@
                                     {{ form.password }}
                                 </div>
                                 <div class="form-group d-flex align-items-center justify-content-between mt-4 mb-0">
-                                    <a class="small" href="https://fikiwiki.com/uploads/posts/2022-02/1644871729_1-fikiwiki-com-p-mne-pofig-prikolnie-kartinki-1.jpg">Forgot your password?</a>
+                                    <a class="small"
+                                       href="https://fikiwiki.com/uploads/posts/2022-02/1644871729_1-fikiwiki-com-p-mne-pofig-prikolnie-kartinki-1.jpg">Forgot
+                                        your password?</a>
+                                    <a href="{% url 'social:begin' 'google-oauth2' %}"><img style="width: 50px; height: 50px;"
+                                                                           src="{% static 'vendor/img/icons/google.png' %}"
+                                                                           alt="Google"></a>
+                                    <a href="https://vk.com/"><img style="width: 50px; height: 50px;"
+                                                                   src="{% static 'vendor/img/icons/vk.png' %}"
+                                                                   alt="VKontakte"></a>
                                     <input class="btn btn-primary" type="submit" value="Authorization">
                                 </div>
                             </form>
