@@ -156,7 +156,7 @@ SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 LOGIN_URL = '/auth/login/google-oauth2/'
 
 LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/users/profile/'
-LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/users/login/'
+LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
