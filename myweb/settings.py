@@ -65,6 +65,7 @@ TEMPLATES = [
                 'django.template.context_processors.request',
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
+                'social_django.context_processors.backends',
             ],
         },
     },
@@ -137,10 +138,15 @@ AUTH_USER_MODEL = 'users.User'
 AUTHENTICATION_BACKENDS = (
     'social_core.backends.google.GoogleOAuth2',
     'django.contrib.auth.backends.ModelBackend',
+    'social_core.backends.vk.VKOAuth2',
+    'django.contrib.auth.backends.ModelBackend'
 )
-
 SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '338511939882-0kpds6cpo47i3mdtso43695tcqrhbuod.apps.googleusercontent.com'
 SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = '51539937'
+SOCIAL_AUTH_VK_OAUTH2_SECRET = 'AnpmLV8awdbcwabuqjwr'
+SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
 LOGIN_URL = '/auth/login/google-oauth2/'
 
@@ -148,3 +154,5 @@ LOGIN_REDIRECT_URL = 'http://127.0.0.1:8000/users/profile/'
 LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000/users/login/'
 
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
+
+SOCIAL_AUTH_POSTGRES_JSONFIELD = True
