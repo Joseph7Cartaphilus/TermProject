@@ -4,8 +4,9 @@ from django.conf import settings
 from . import views
 
 urlpatterns = [
-    path('login/', views.login, name='login'),
-    path('register/', views.register, name='register'),
+    path('login/', views.login, name='login'),  # Страница аутентификации
+    path('register/', views.register, name='register'),  # Страница регистрации
     path('logout/', views.logout, {'next_page': settings.LOGOUT_REDIRECT_URL}, name='logout'),
-    path('profile/', views.profile, name='profile')
+    # Страница аутентификации (выход из системы)
+    path('profile/', views.profile, name='profile')  # Страница профиля пользователя
 ]
