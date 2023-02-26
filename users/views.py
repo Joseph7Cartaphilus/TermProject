@@ -59,3 +59,7 @@ def profile(request: HttpRequest) -> HttpResponse:
     return render(request, 'profile.html', {
         'form': form
     })
+
+
+def main(request):
+    return render(request, 'main.html')
