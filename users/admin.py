@@ -58,6 +58,9 @@ class UserAdmin(DjangoUserAdmin):
 
     def get_image(self, obj):
         """Вывод изображений в административной панели"""
-        return mark_safe(f'<img src={obj.image.url} width="50" height="60"')
+        if obj.image:
+            return mark_safe(f'<img src="{obj.image.url}" width="50" height="60">')
+        else:
+            return '-'
 
     get_image.short_description = "Avatar"
