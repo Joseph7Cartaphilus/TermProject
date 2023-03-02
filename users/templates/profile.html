@@ -9,11 +9,13 @@
             <div class="row h-100 align-items-center">
                 <div class="col-12">
                     <div class="breadcrumb-content text-center">
-                        <h2 class="page-title">Images</h2>
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb justify-content-center">
-                                <li class="breadcrumb-item"><a href=""><i class="icon_house_alt"></i>
+                                <li class="breadcrumb-item"><a href="/"><i class="icon_house_alt"></i>
                                     Home</a>
+                                </li>
+                                <li class="breadcrumb-item"><a href="{% url 'logout' %}"><i class="icon_house_alt"></i>
+                                    Logout</a>
                                 </li>
                                 <li class="breadcrumb-item active" aria-current="page">Profile</li>
                             </ol>
@@ -26,32 +28,27 @@
     <!-- Breadcrumb Area End -->
 
     <!-- Images Area Start -->
-    <div class="contact-area section-padding-80-50">
+    <div class="contact-area section-padding-80-50" style="margin-left: 420px">
         <div class="container">
             <div class="row">
-                <div class="col-14">
-                    <h2 class="contact-title mb-30">This`s your Profile
-                        <b class="text-lg-center">{{ user.username|upper }}</b>
-                    </h2>
-                </div>
                 <form action="{% url 'profile' %}" method="post" enctype="multipart/form-data">
                     {% csrf_token %}
                     <div class="form-row">
                         <div class="col-lg-12 text-center">
-                            <img width="200" height="200"
+                            <img width="250" height="250"
                                  src="{% if user.image %}{{ user.image.url }}
                                  {% else %}{% static 'vendor/img/users/default-user.png' %} {% endif %}"
-                                 class="img-thumbnail" alt="photo_user">
+                                 class="img-thumbnail my_img" alt="photo_user">
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="small mb-3" for="{{ form.first_name.id_for_label }}">Имя</label>
+                                <label class="small mb-3" for="{{ form.first_name.id_for_label }}">Name</label>
                                 {{ form.first_name }}
                             </div>
                         </div>
                         <div class="col-lg-6">
                             <div class="form-group">
-                                <label class="small mb-3" for="{{ form.last_name.id_for_label }}">Фамилия</label>
+                                <label class="small mb-3" for="{{ form.last_name.id_for_label }}">Surname</label>
                                 {{ form.last_name }}
                             </div>
                         </div>
@@ -60,25 +57,23 @@
                         <div class="col-lg-12">
                             <div class="custom-file">
                                 {{ form.image }}
-                                <label class="custom-file-label" for="{{ form.image.id_for_label }}">Выберите
-                                    изображение</label>
+                                <label class="custom-file-label" for="{{ form.image.id_for_label }}">Choose your picture</label>
                             </div>
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-lg-6">
-                            <label class="small mb-1" for="{{ form.username.id_for_label }}">Имя пользователя</label>
+                            <label class="small mb-1" for="{{ form.username.id_for_label }}">Username</label>
                             {{ form.username }}
                         </div>
                         <div class="col-lg-6">
-                            <label class="small mb-1" for="{{ form.email.id_for_label }}">Адрес электронной
-                                почты</label>
+                            <label class="small mb-1" for="{{ form.email.id_for_label }}">Email adress</label>
                             {{ form.email }}
                         </div>
                     </div>
                     <div class="form-row">
                         <div class="col-lg-12" style="margin-top: 33px;">
-                            <input class="btn btn-info btn-block" type="submit" value="Сохранить">
+                            <input class="btn btn-info btn-block" type="submit" value="Save">
                         </div>
                     </div>
                 </form>

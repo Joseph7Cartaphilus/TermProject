@@ -491,6 +491,13 @@ mark,
     height: auto;
 }
 
+.my_img {
+    margin-top: 3vh;
+    margin-bottom: 3vh;
+    max-width: 100%;
+    border-radius: 20%;
+}
+
 .figure {
     display: inline-block;
 }
