@@ -11,10 +11,15 @@ https://docs.djangoproject.com/en/4.1/ref/settings/
 """
 import os
 from pathlib import Path
+from dotenv import load_dotenv, find_dotenv
+
+load_dotenv(find_dotenv())  # take environment variables from .env.
+
+# Code of your application, which uses environment variables (e.g. from `os.environ` or
+# `os.getenv`) as if they came from the actual environment.
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
-
 
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/4.1/howto/deployment/checklist/
@@ -26,7 +31,6 @@ SECRET_KEY = 'django-insecure-b8q-fx+w0z3v*!s)k9%9f$zf(m9w+q&mjf^=cbz355ae6)8o3u
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
 
 # Application definition
 
@@ -73,21 +77,19 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myweb.wsgi.application'
 
-
 # Database
 # https://docs.djangoproject.com/en/4.1/ref/settings/#databases
 
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": "Termproject",
-        "USER": "postgres",
-        "PASSWORD": "17456",
-        "HOST": "localhost",
-        "PORT": 5432,
+        "NAME": os.getenv("NAME"),
+        "USER": os.getenv("USER"),
+        "PASSWORD": os.getenv("PASSWORD"),
+        "HOST": os.getenv("HOST"),
+        "PORT": os.getenv("PORT"),
     }
 }
-
 
 # Password validation
 # https://docs.djangoproject.com/en/4.1/ref/settings/#auth-password-validators
@@ -107,7 +109,6 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-
 # Internationalization
 # https://docs.djangoproject.com/en/4.1/topics/i18n/
 
@@ -118,7 +119,6 @@ TIME_ZONE = 'UTC'
 USE_I18N = True
 
 USE_TZ = True
-
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
@@ -146,11 +146,12 @@ AUTHENTICATION_BACKENDS = (
     'social_core.backends.vk.VKOAuth2',
     'django.contrib.auth.backends.ModelBackend'
 )
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '338511939882-0kpds6cpo47i3mdtso43695tcqrhbuod.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
 
-SOCIAL_AUTH_VK_OAUTH2_KEY = '51539937'
-SOCIAL_AUTH_VK_OAUTH2_SECRET = 'AnpmLV8awdbcwabuqjwr'
+SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_KEY")
+SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = os.getenv("SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET")
+
+SOCIAL_AUTH_VK_OAUTH2_KEY = os.getenv("SOCIAL_AUTH_VK_OAUTH2_KEY")
+SOCIAL_AUTH_VK_OAUTH2_SECRET = os.getenv("SOCIAL_AUTH_VK_OAUTH2_SECRET")
 SOCIAL_AUTH_VK_OAUTH2_SCOPE = ['email']
 
 LOGIN_URL = '/auth/login/google-oauth2/'
