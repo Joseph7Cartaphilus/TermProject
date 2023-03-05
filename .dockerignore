@@ -265,4 +265,4 @@ poetry.toml
 .idea
 
 media/
-src/static/
+static/
