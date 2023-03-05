@@ -10,6 +10,10 @@
 
 ---
 
+- 'docker-compose -f deploy/docker-compose.yml -p termproject up' - Запуск через Docker
+
+---
+
 - 'poetry env info -p' - Узнать расположение интерпретатора для настройки проекта в PyCharm.
 
 - 'python manage.py test' - Чтобы запустить тесты для проверки.
