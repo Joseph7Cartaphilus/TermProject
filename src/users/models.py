@@ -30,4 +30,5 @@ class Contact(models.Model):
     date = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
+        """Представление объекта"""
         return self.email
