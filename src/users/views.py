@@ -1,10 +1,13 @@
-from django.shortcuts import render, HttpResponseRedirect
+from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse, HttpRequest
 from django.urls import reverse
 from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
+from src.users.tasks import send
+from src.users.models import User
+from django.views.generic import CreateView
 
 
 def login(request: HttpRequest) -> HttpResponse:
@@ -57,3 +60,27 @@ def profile(request: HttpRequest) -> HttpResponse:
 
 def main(request):
     return render(request, 'main.html')
+
+
+def password_reset_request(request):
+    if request.method == "POST":
+        email = request.POST.get('email')
+        user = User.objects.filter(email=email).first()
+        if user:
+            send_password_reset_email.delay(user.email)
+            messages.success(request, 'Password reset email has been sent')
+        else:
+            messages.error(request, 'User does not exist')
+        return redirect('password_reset_request')
+    return render(request, 'password_reset_request.html')
+
+
+class ContactView(CreateView):  # TODO убрать
+    success_url = "users/login.html"
+    template_name = "users/password_reset_request"
+
+    def form_valid(self, form):
+        form.save()
+        # send(form.instance.email) # работает
+        send_spam_email.delay(form.instance.email)
+        return super().form_valid(form)
