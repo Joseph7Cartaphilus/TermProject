@@ -43,7 +43,9 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
 
     'users',
+    'pins',
     'social_django',
+    'import_export',
 ]
 
 MIDDLEWARE = [
@@ -61,7 +63,7 @@ ROOT_URLCONF = 'myweb.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': ['templates'],
+        'DIRS': [BASE_DIR / 'templates'],
         'APP_DIRS': True,
         'OPTIONS': {
             'context_processors': [
@@ -83,11 +85,11 @@ WSGI_APPLICATION = 'myweb.wsgi.application'
 DATABASES = {
     "default": {
         "ENGINE": "django.db.backends.postgresql",
-        "NAME": os.getenv("NAME"),
-        "USER": os.getenv("USER"),
-        "PASSWORD": os.getenv("PASSWORD"),
-        "HOST": os.getenv("HOST"),
-        "PORT": os.getenv("PORT"),
+        "NAME": "Termproject",
+        "USER": "postgres",
+        "PASSWORD": "17456",
+        "HOST": "localhost",  # postgres for docker \ localhost
+        "PORT": 5432
     }
 }
 
@@ -127,7 +129,7 @@ STATIC_URL = 'static/'
 
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'users/static'),
-    os.path.join(BASE_DIR, 'static'),
+    os.path.join(BASE_DIR, 'pins/static'),
 )
 
 MEDIA_URL = '/media/'
