@@ -5,8 +5,7 @@ from django.contrib import auth, messages
 from django.contrib.auth.decorators import login_required
 
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
-from src.users.tasks import send
-from src.users.models import User
+from users.models import User
 from django.views.generic import CreateView
 
 
