@@ -3,7 +3,7 @@ from django.utils.safestring import mark_safe
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
 
-from src.pins.models import Pin
+from pins.models import Pin
 
 
 class PinResource(resources.ModelResource):
