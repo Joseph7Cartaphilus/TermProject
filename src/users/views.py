@@ -55,5 +55,6 @@ def profile(request: HttpRequest) -> HttpResponse:
     })
 
 
-def main(request):
+def main(request: HttpRequest) -> HttpResponse:
+    """Основная страница parallax Forest"""
     return render(request, 'main.html')
