@@ -1,18 +1,20 @@
 from django.shortcuts import render, get_object_or_404, redirect
 
-from src.pins.models import Pin, PinCategory
+from pins.models import Pin
 
 
-def gallery(request, category_id=None):
-    context = {
-        'pins': Pin.objects.all(),
-        'categories': PinCategory.objects.all(),
-    }
-    if category_id:
-        context.update({'pins': Pin.objects.filter(category_id=category_id)})
-    else:
-        context.update({'pins': Pin.objects.all()})
-    return render(request, 'gallery.html', context)
+# def gallery(request, category_id=None):
+#     context = {
+#         'pins': Pin.objects.all(),
+#         'categories': PinCategory.objects.all(),
+#     }
+#     if category_id:
+#         context.update({'pins': Pin.objects.filter(category_id=category_id)})
+#     else:
+#         context.update({'pins': Pin.objects.all()})
+#     return render(request, 'gallery.html', context)
+def gallery(request):
+    return render(request, 'gallery.html')
 
 
 def show_one_pin_by_slug_id(request, slug_pin: str, id: int):

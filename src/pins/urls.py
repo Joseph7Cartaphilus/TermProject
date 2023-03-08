@@ -1,7 +1,7 @@
 from django.urls import path
-from django.conf import settings
 
+from pins import views
 
 urlpatterns = [
-
+    path('gallery/', views.gallery, name='gallery'),
 ]
