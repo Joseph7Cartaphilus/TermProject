@@ -29,7 +29,7 @@
 <div class="cat-nav">
     <ul class="category-list">
         <a href="/" class="btnLogin-popup">Home</a>
-        <a href="#add" class="btnLogin-popup">Add</a>
+        <a href="{% url 'add_pin' %}" class="btnLogin-popup">Add</a>
         <a href="{% url 'gallery' %}" class="btnLogin-popup">All</a>
         {% for category in categories %}
             <nav class="navigation">
