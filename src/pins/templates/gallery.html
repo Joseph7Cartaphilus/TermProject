@@ -28,9 +28,11 @@
 
 <div class="cat-nav">
     <ul class="category-list">
-        <a href="/" class="btnLogin-popup">Home</a>
+        <a href="{% url 'main' %}" class="btnLogin-popup">Home</a>
         <a href="{% url 'add_pin' %}" class="btnLogin-popup">Add</a>
-        <a href="{% url 'gallery' %}" class="btnLogin-popup">All</a>
+        <nav class="navigation">
+            <a href="{% url 'gallery' %}">All</a>
+        </nav>
         {% for category in categories %}
             <nav class="navigation">
                 <a href="{% url 'category' category.id %}">{{ category.name }}</a>
