@@ -3,31 +3,53 @@
 <html lang="en">
 <head>
 
-	<meta charset="UTF-8">
-	<meta http-equiv="X-UA-Compatible" content="IE=edge">
-	<meta name="viewport" content="width=device-width, initial-scale=1.0">
-	<title>Document</title>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
 
-	<link rel="stylesheet" href="{% static 'css/gallery.css' %}">
+    <link rel="stylesheet" href="{% static 'css/gallery.css' %}">
 
-	<script src="{% static 'libs/Gallerygsap.min.js' %}" defer></script>
-	<script src="{% static 'libs/GalleryDraggable.min.js' %}" defer></script>
-	<script src="{% static 'libs/GalleryInertiaPlugin.min.js' %}" defer></script>
-	<script src="{% static 'js/gallery.js' %}" defer></script>
+    <script src="{% static 'libs/Gallerygsap.min.js' %}" defer></script>
+    <script src="{% static 'libs/GalleryDraggable.min.js' %}" defer></script>
+    <script src="{% static 'libs/GalleryInertiaPlugin.min.js' %}" defer></script>
+    <script src="{% static 'js/gallery.js' %}" defer></script>
 
-	<style>
-		.gallery { opacity: 0; }
-	</style>
+    <style>
+        .gallery {
+            opacity: 0;
+        }
+    </style>
 
 </head>
 <body>
 
-	<h1 class="header">Architecture <span>Loading...</span></h1>
+<h1 class="header">Art Gallery <span>Loading...</span></h1>
 
-	<!-- .gallery>(.gallery__item*20>img[src="img/$.jpg" alt="Alt"])*4 -->
+<div class="cat-nav">
+    <ul class="category-list">
+        <a href="/" class="btnLogin-popup">Home</a>
+        <a href="#add" class="btnLogin-popup">Add</a>
+        <a href="{% url 'gallery' %}" class="btnLogin-popup">All</a>
+        {% for category in categories %}
+            <nav class="navigation">
+                <a href="{% url 'category' category.id %}">{{ category.name }}</a>
+            </nav>
+        {% endfor %}
+    </ul>
+</div>
 
-	<div class="gallery">
-		<div class="gallery__item"><img src="{% static 'img' %}" alt="Alt"></div>
-	</div>
+<!-- .gallery>(.gallery__item*20>img[src="img/$.jpg" alt="Alt"])*4 -->
+
+<div class="gallery">
+    {% for pin in pins %}
+        <div class="gallery__item">
+            <a target="_blank" href="/media/{{ pin.img }}">
+                <img src="/media/{{ pin.img }}" alt="media_files">
+            </a>
+        </div>
+    {% endfor %}
+</div>
+
 </body>
 </html>
