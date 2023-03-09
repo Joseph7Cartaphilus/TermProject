@@ -9,15 +9,14 @@ from pins.models import Pin
 class PinResource(resources.ModelResource):
     class Meta:
         model = Pin
-        fields = ('title', 'text', 'category__name', 'img', 'slug', 'user__username')
-        export_order = ('title', 'text', 'category__name', 'img', 'slug', 'user__username')
+        fields = ('category__name', 'img', 'user__username')
+        export_order = ('category__name', 'img', 'user__username')
 
 
 class PinAdmin(ImportExportModelAdmin):
-    fields = ['title', 'text', 'category', 'user', 'img', 'slug']
-    prepopulated_fields = {'slug': ('title',)}
-    list_display = ['title', 'text', 'category', 'user', 'get_image', 'slug']
-    ordering = ['title']
+    fields = ['category', 'user', 'img']
+    list_display = ['category', 'user', 'get_image']
+    ordering = ['-created_at']
     list_per_page = 20
     resource_classes = [PinResource]
 
