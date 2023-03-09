@@ -1,7 +1,7 @@
-from django.utils.safestring import mark_safe
-
 from import_export import resources
 from import_export.admin import ImportExportModelAdmin
+
+from django.utils.safestring import mark_safe
 
 from pins.models import Pin
 
@@ -14,8 +14,8 @@ class PinResource(resources.ModelResource):
 
 
 class PinAdmin(ImportExportModelAdmin):
-    fields = ['category', 'user', 'img']
-    list_display = ['category', 'user', 'get_image']
+    fields = ['img', 'category', 'user']
+    list_display = ['get_image', 'category', 'user']
     ordering = ['-created_at']
     list_per_page = 20
     resource_classes = [PinResource]
@@ -23,7 +23,7 @@ class PinAdmin(ImportExportModelAdmin):
     def get_image(self, obj):
         """Вывод изображений в административной панели"""
         if obj.img:
-            return mark_safe(f'<img src="{obj.img.url}" width="50" height="60">')
+            return mark_safe(f'<img src="{obj.img.url}" width="60" height="60">')
         else:
             return '-'
 
