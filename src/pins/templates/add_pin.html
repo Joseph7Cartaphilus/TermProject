@@ -1,6 +1,31 @@
-<h1>Add Pin</h1>
-<form method="post" enctype="multipart/form-data">
-    {% csrf_token %}
-    {{ form.as_p }}
-    <button type="submit">Save Pin</button>
-</form>
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Add Pin</title>
+    <link rel="stylesheet" href="{% static 'css/add_pin.css' %}">
+</head>
+<body>
+<div class="wrapper">
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+        {% csrf_token %}
+        <div style="display: flex; flex-direction: column;">
+            <h1 style="display: flex; align-items: center; justify-content: center">Add Pin</h1>
+            <label for="{{ form.img.id_for_label }}">Choose your pin:</label>
+            <div style="margin: 10px 0;">
+                {{ form.img }}
+            </div>
+            <div style="margin: 10px 0;">
+                <label for="{{ form.category.id_for_label }}">Choose category:</label>
+                {{ form.category }}
+            </div>
+        </div>
+        <button type="submit">Save Pin</button>
+        <br>
+        <div>
+            <a class="btn-a" href="{% url 'gallery' %}">Gallery</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

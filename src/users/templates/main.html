@@ -41,8 +41,14 @@
             <div class="main-article__content">
                 {% if user.is_authenticated %}
                     <h2 class="main-article__header">Welcome back</h2>
-                    <p class="main-article__paragraph">{{ user.username }}</p>
-                    <h2 class="main-article__header" style="margin-top: 60px"><a style="color: #4ac1f7" href="/">Begin</a>
+                    <h2 class="main-article__header"><a style="text-decoration: none; color: #0b24ff" href="{% url 'profile' %}">{{ user.username }}</a></h2>
+
+                    <h2 class="main-article__header" style="margin-top: 60px">
+                    <a style="color: #4ac1f7" href="{% url 'gallery' %}">Pins</a>
+                    <h2 class="main-article__header" style="margin-top: 60px">
+                    <a style="color: #4ac1f7" href="/">Music</a>
+                    <h2 class="main-article__header" style="margin-top: 60px"><a style="color: #4ac1f7"
+                                                                                 href="/">Reviews</a>
                     </h2>
                 {% else %}
                     <h2 class="main-article__header">Sign in to start</h2>
