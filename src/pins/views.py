@@ -1,10 +1,12 @@
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpRequest
+from django.contrib.auth.decorators import login_required
 
 from pins.models import Pin, PinCategory
 from pins.forms import PinForm
 
 
+@login_required
 def gallery(request: HttpRequest, category_id=None) -> HttpResponse:
     """Функция для отображения всех пинов | категорий"""
     context = {
@@ -18,6 +20,7 @@ def gallery(request: HttpRequest, category_id=None) -> HttpResponse:
     return render(request, 'gallery.html', context)
 
 
+@login_required
 def add_pin(request: HttpRequest) -> HttpResponse:
     """Функция создания пина"""
     if request.method == 'POST':
