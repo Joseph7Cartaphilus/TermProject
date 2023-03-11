@@ -7,6 +7,7 @@ from pins.models import Pin
 
 
 class PinResource(resources.ModelResource):
+    """Класс для импорта\экспорта пинов"""
     class Meta:
         model = Pin
         fields = ('category__name', 'img', 'user__username')
@@ -14,6 +15,7 @@ class PinResource(resources.ModelResource):
 
 
 class PinAdmin(ImportExportModelAdmin):
+    """Отображение пинов в админ панели"""
     fields = ['img', 'category', 'user']
     list_display = ['get_image', 'category', 'user']
     ordering = ['-created_at']

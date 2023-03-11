@@ -19,6 +19,7 @@ def gallery(request: HttpRequest, category_id=None) -> HttpResponse:
 
 
 def add_pin(request: HttpRequest) -> HttpResponse:
+    """Функция создания пина"""
     if request.method == 'POST':
         form = PinForm(request.POST, request.FILES)
         if form.is_valid():

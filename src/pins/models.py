@@ -6,7 +6,7 @@ from users.models import User
 
 
 class BaseModel(models.Model):
-    """General model"""
+    """Общая модель"""
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
 
