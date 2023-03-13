@@ -6,36 +6,24 @@ from users.models import User
 
 class UserLoginForm(AuthenticationForm):
     """Форма для аутентификации пользователей"""
-    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your username', }))
-    password = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Input your password'}))
+    username = forms.CharField(widget=forms.TextInput())
+    password = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
         fields = ('username', 'password')
 
-    def __init__(self, *args, **kwargs):
-        super(UserLoginForm, self).__init__(*args, **kwargs)
-        for field_name, filed in self.fields.items():
-            filed.widget.attrs['class'] = 'form-control py-4'
-
 
 class UserRegistrationForm(UserCreationForm):
     """Форма для регистрации пользователей"""
-    first_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your name'}))
-    last_name = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your surname'}))
-    username = forms.CharField(widget=forms.TextInput(attrs={'placeholder': 'Input your username'}))
-    email = forms.CharField(widget=forms.EmailInput(attrs={'placeholder': 'Input your email adress'}))
-    password1 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Input your password'}))
-    password2 = forms.CharField(widget=forms.PasswordInput(attrs={'placeholder': 'Confirm your password'}))
+    username = forms.CharField(required=False, widget=forms.TextInput())
+    email = forms.CharField(widget=forms.EmailInput())
+    password1 = forms.CharField(widget=forms.PasswordInput())
+    password2 = forms.CharField(widget=forms.PasswordInput())
 
     class Meta:
         model = User
-        fields = ('first_name', 'last_name', 'username', 'email', 'password1', 'password2')
-
-    def __init__(self, *args, **kwargs):
-        super(UserRegistrationForm, self).__init__(*args, **kwargs)
-        for field_name, filed in self.fields.items():
-            filed.widget.attrs['class'] = 'form-control py-4'
+        fields = ('username', 'email', 'password1', 'password2')
 
 
 class UserProfileForm(UserChangeForm):
