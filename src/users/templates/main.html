@@ -36,29 +36,25 @@
                      style="background-image: url({% static 'img/layer-front.png' %});"></div>
             </div>
         </header>
-
-        <article class="main-article" style="background-image: url({% static 'img/dungeon.jpg' %});">
-            <div class="main-article__content">
-                {% if user.is_authenticated %}
-                    <h2 class="main-article__header">Welcome back</h2>
-                    <h2 class="main-article__header"><a style="text-decoration: none; color: #0b24ff" href="{% url 'profile' %}">{{ user.username }}</a></h2>
-
-                    <h2 class="main-article__header" style="margin-top: 60px">
-                    <a style="color: #4ac1f7" href="{% url 'gallery' %}">Pins</a>
-                    <h2 class="main-article__header" style="margin-top: 60px">
-                    <a style="color: #4ac1f7" href="/">Music</a>
-                    <h2 class="main-article__header" style="margin-top: 60px"><a style="color: #4ac1f7"
-                                                                                 href="/">Reviews</a>
-                    </h2>
-                {% else %}
-                    <h2 class="main-article__header">Sign in to start</h2>
-                    <p class="main-article__paragraph"><a style="color: #4ac1f7" href="{% url 'login_or_register' %}">Sing in</a>
-                    </p>
-                {% endif %}
-            </div>
-            <div class="copy">&copy; Joseph Cartaphilus</div>
-        </article>
-
+        {% if user.is_authenticated %}
+            <a href="{% url 'profile' %}">
+                <article class="main-article" style="background-image: url({% static 'img/dungeon.jpg' %});">
+                    <div class="main-article__content">
+                        <h2 class="main-article__header">Welcome back</h2>
+                    </div>
+                    <div class="copy">&copy; Joseph Cartaphilus</div>
+                </article>
+            </a>
+        {% else %}
+            <a href="{% url 'login_or_register' %}">
+                <article class="main-article" style="background-image: url({% static 'img/dungeon.jpg' %});">
+                    <div class="main-article__content">
+                        <h2 class="main-article__header">Sing up to start</h2>
+                    </div>
+                    <div class="copy">&copy; Joseph Cartaphilus</div>
+                </article>
+            </a>
+        {% endif %}
     </div>
 </div>
 
