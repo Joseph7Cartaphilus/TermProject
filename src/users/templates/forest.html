@@ -19,13 +19,8 @@
     </h2>
     <nav class="navigation">
         <a href="{% url 'main' %}">Home</a>
-        <a href="{% url 'social:begin' 'google-oauth2' %}"><img
-                style="width: 35px; height: 35px;"
-                src="{% static 'vendor/img/icons/google.png' %}"
-                alt="Google"></a>
-        <a href="/login/vk-oauth2"><img style="width: 35px; height: 35px;"
-                                        src="{% static 'vendor/img/icons/vk.png' %}"
-                                        alt="VKontakte"></a>
+        <a href="{% url 'social:begin' 'google-oauth2' %}"><ion-icon name="logo-google"></ion-icon></a>
+        <a href="/login/vk-oauth2"><ion-icon name="logo-vk"></ion-icon></a>
         <button class="btnLogin-popup">Login</button>
     </nav>
 </header>

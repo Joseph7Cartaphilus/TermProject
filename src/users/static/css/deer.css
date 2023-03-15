@@ -255,3 +255,9 @@ header {
 .login-register p a:hover {
     text-decoration: underline;
 }
+
+ion-icon {
+  --ionicon-stroke-width: 16px;
+    width: 30px;
+    height: 30px;
+}
