@@ -10884,3 +10884,15 @@ body {
 .sb-sidenav-light .sb-sidenav-footer {
     background-color: #e9ecef;
 }
+
+.soundbutton {
+	position: fixed;
+	bottom: 5vh;
+	right: 5vw;
+	cursor: pointer;
+	width: 100px;
+	transition: .25s ease;
+}
+.soundbutton.paused {
+	opacity: .25;
+}
