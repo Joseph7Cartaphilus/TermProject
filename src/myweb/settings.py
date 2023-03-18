@@ -44,6 +44,7 @@ INSTALLED_APPS = [
 
     'users',
     'pins',
+    'music',
     'social_django',
     'import_export',
 ]
