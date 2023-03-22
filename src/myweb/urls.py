@@ -10,7 +10,9 @@ urlpatterns = [
     path('', views.main, name='main'),  # Главная страница (Parallax Forest)
     path('', include('social_django.urls', namespace='social')),  # OAuth 2
     path('users/', include('users.urls')),  # Приложение users
-    path('pins/', include('pins.urls'))  # Приложение pins
+    path('pins/', include('pins.urls')),  # Приложение pins
+    path('music/', include('music.urls')),  # Приложение music
+    path('reviews/', include('reviews.urls')),  # Приложение reviews
 ]
 
 # Настройка для MEDIA
