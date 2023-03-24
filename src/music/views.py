@@ -1,3 +1,10 @@
 from django.shortcuts import render
 
-# Create your views here.
+from music.models import Track
+
+
+def player(request):
+    context = {
+        'tracks': Track.objects.all(),
+    }
+    return render(request, 'player.html', context)
