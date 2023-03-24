@@ -12,7 +12,6 @@ urlpatterns = [
     path('users/', include('users.urls')),  # Приложение users
     path('pins/', include('pins.urls')),  # Приложение pins
     path('music/', include('music.urls')),  # Приложение music
-    path('reviews/', include('reviews.urls')),  # Приложение reviews
 ]
 
 # Настройка для MEDIA
