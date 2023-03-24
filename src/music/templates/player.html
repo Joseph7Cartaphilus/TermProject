@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <title>Joseph Cartaphilus</title>
+
+    <link rel="icon" type="images/png" href="{% static 'css/img/ico.png' %}">
+    <link rel="stylesheet" href="{% static 'css/style.css' %}">
+    <script src="{% static 'js/music.js' %}" defer></script>
+</head>
+
+<header>
+    <h2 class="logo">Music {{ user.username }}</h2>
+    <nav class="navigation">
+        <a href="{% url 'profile' %}">Profile</a>
+    </nav>
+</header>
+
+<body>
+{% for track in tracks %}
+    <div class="flip-container">
+        <div class="flip">
+            <div class="front">
+                <div class="header-flip">
+                    <h3 class="name">{{ track.title|upper }}</h3>
+                </div>
+                <div class="img-container"><img src="/media/{{ track.img }}" alt="img"></div>
+                <h5 class="flip-btn">Music</h5>
+            </div>
+            <div class="back">
+                <div class="header-flip header-flip-back">
+                    <img src="/media/{{ track.img }}" alt="img" class="back-img">
+                    <h3 class="name">{{ track.title|upper }}</h3>
+                </div>
+                <img class="soundbutton paused" src="{% static 'img/sound.gif' %}" alt="Alt">
+	            <audio class="audio" src="/media/{{ track.audio_file }}"></audio>
+                <h4 class="flip-btn">Music</h4>
+            </div>
+        </div>
+    </div>
+{% endfor %}
+</body>
+</html>
+
