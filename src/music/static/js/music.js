@@ -7,8 +7,8 @@ let currentTrack = null;
 
 soundButtons.forEach((soundButton, index) => {
     soundButton.addEventListener('click', e => {
-        // pause current track if playing
-        if (currentTrack && !currentTrack.paused) {
+        // check if another track is playing and pause it
+        if (currentTrack && currentTrack.index !== index) {
             currentTrack.pause();
             headings[currentTrack.index].textContent = "Music";
             subheadings[currentTrack.index].textContent = "Music";
