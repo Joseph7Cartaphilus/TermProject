@@ -34,6 +34,30 @@ header {
     z-index: 99;
 }
 
+form {
+    display: flex;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+input[type="text"] {
+    padding: 10px;
+    border-radius: 5px;
+    border: none;
+    background-color: #2d2d2d;
+    color: #fff;
+    margin-right: 10px;
+}
+
+button[type="submit"] {
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: none;
+    background-color: #4d4d4d;
+    color: #fff;
+    cursor: pointer;
+}
+
 .logo {
     font-size: 2em;
     color: #fff;

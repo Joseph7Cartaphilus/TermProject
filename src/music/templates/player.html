@@ -23,6 +23,10 @@
             <a href="{% url 'artist' artist.id %}">{{ artist.name }}</a>
         </nav>
     {% endfor %}
+    <form method="GET">
+        <input type="text" name="q" value="{{ query }}" placeholder="Поиск песен">
+        <button type="submit">Найти</button>
+    </form>
     <nav class="navigation">
         <a href="{% url 'profile' %}">Profile</a>
     </nav>
