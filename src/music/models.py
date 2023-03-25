@@ -38,6 +38,7 @@ class Playlist(BaseModel):
     """Модель плейлиста"""
     title = models.CharField(max_length=255, verbose_name='Playlist title')
     tracks = models.ManyToManyField(Track, verbose_name='Playlist tracks')
+    img = models.ImageField(upload_to='posters/', null=False, blank=False, verbose_name='Playlist image')
     user = models.ForeignKey(User, on_delete=models.CASCADE, verbose_name='Playlist user')
 
     def __str__(self):
