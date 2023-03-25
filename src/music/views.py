@@ -3,7 +3,7 @@ from django.shortcuts import render
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.decorators import login_required
 
-from music.models import Track, Artist
+from music.models import Track, Artist, Playlist
 
 
 @login_required
@@ -28,4 +28,7 @@ def player(request: HttpRequest, artist_id=None) -> HttpResponse:
 
 def playlists(request: HttpRequest) -> HttpResponse:
     """Функция для отображения всех плейлистов"""
-    return render(request, 'playlists.html')
+    context = {
+        'playlists': Playlist.objects.all()
+    }
+    return render(request, 'playlists.html', context)
