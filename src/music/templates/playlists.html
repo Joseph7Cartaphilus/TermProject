@@ -15,7 +15,7 @@
 <header>
     <h2 class="logo">Playlists {{ user.username }}</h2>
     <nav class="navigation">
-        <a href="{% url 'player' %}">{{ user.username }} Music</a>
+        <a href="{% url 'player' %}">Music</a>
     </nav>
     <nav class="navigation">
         <a href="{% url 'profile' %}">Profile</a>
@@ -33,7 +33,7 @@
                 <p class="description">
                     <b>Number of tracks: </b> {{ playlist.tracks.count }}
                 </p>
-                <a class="flip-btn">Music</a>
+                <a href="{% url 'playlist' playlist.id %}" class="flip-btn">Listen</a>
             </div>
         </div>
     </div>
