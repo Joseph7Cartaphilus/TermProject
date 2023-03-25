@@ -24,3 +24,8 @@ def player(request: HttpRequest, artist_id=None) -> HttpResponse:
     else:
         context.update({'artists': Artist.objects.all()})
     return render(request, 'player.html', context)
+
+
+def playlists(request: HttpRequest) -> HttpResponse:
+    """Функция для отображения всех плейлистов"""
+    return render(request, 'playlists.html')
