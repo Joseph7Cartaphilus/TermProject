@@ -16,6 +16,14 @@
 <header>
     <h2 class="logo">Music {{ user.username }}</h2>
     <nav class="navigation">
+        <a href="{% url 'player' %}">All</a>
+    </nav>
+    {% for artist in artists %}
+        <nav class="navigation">
+            <a href="{% url 'artist' artist.id %}">{{ artist.name }}</a>
+        </nav>
+    {% endfor %}
+    <nav class="navigation">
         <a href="{% url 'profile' %}">Profile</a>
     </nav>
 </header>
@@ -37,7 +45,7 @@
                     <h3 class="name">{{ track.title|upper }}</h3>
                 </div>
                 <img class="soundbutton paused" src="{% static 'img/sound.gif' %}" alt="Alt">
-	            <audio class="audio" src="/media/{{ track.audio_file }}"></audio>
+                <audio class="audio" src="/media/{{ track.audio_file }}"></audio>
                 <h4 class="flip-btn">Music</h4>
             </div>
         </div>
