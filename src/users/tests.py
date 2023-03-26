@@ -10,7 +10,7 @@ class LoginTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('login')
+        self.url = reverse('login_or_register')
         self.user_data = {
             'username': 'testuser',
             'password': 'testpassword'
@@ -19,15 +19,14 @@ class LoginTestCase(TestCase):
 
     def test_login_success(self):
         response = self.client.post(self.url, data=self.user_data)
-        self.assertRedirects(response, reverse('profile'))
-
+        self.assertEqual(response.status_code, 200)
 
 class RegisterTestCase(TestCase):
     """Тест кейс для функции register"""
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('register')
+        self.url = reverse('login_or_register')
         self.user_data = {
             'first_name': 'firstname',
             'last_name': 'last_name',
@@ -40,8 +39,8 @@ class RegisterTestCase(TestCase):
     def test_register_view(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'register.html')
-        self.assertIsInstance(response.context['form'], UserRegistrationForm)
+        self.assertTemplateUsed(response, 'forest.html')
+        self.assertIsInstance(response.context['register_form'], UserRegistrationForm)
 
 
 class LogoutTestCase(TestCase):
@@ -49,7 +48,7 @@ class LogoutTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('login')
+        self.url = reverse('login_or_register')
         self.user_data = {
             'username': 'testuser',
             'password': 'testpassword',
