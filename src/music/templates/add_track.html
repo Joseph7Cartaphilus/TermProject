@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Joseph Cartaphilus</title>
+    <link rel="stylesheet" href="{% static 'css/add_track.css' %}">
+    <link rel="icon" type="images/png" href="{% static 'css/img/ico.png' %}">
+</head>
+<body>
+<div class="wrapper">
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+        {% csrf_token %}
+        <div style="display: flex; flex-direction: column;">
+            <h1 style="display: flex; align-items: center; justify-content: center">Add Track</h1>
+            <div style="margin: 10px 0;">
+                <label for="{{ form.artist.id_for_label }}">Input name track:</label>
+                {{ form.title }}
+            </div>
+            <div style="margin: 10px 0;">
+                <label for="{{ form.artist.id_for_label }}">Choose artist:</label>
+                {{ form.artist }}
+            </div>
+            <label for="{{ form.audio_file.id_for_label }}">Choose your track:</label>
+            <div style="margin: 10px 0;">
+                {{ form.audio_file }}
+            </div>
+            <label for="{{ form.img.id_for_label }}">Choose your poster:</label>
+            <div style="margin: 10px 0;">
+                {{ form.img }}
+            </div>
+        </div>
+        <button type="submit">Save Track</button>
+        <br>
+        <div>
+            <a class="btn-a" href="{% url 'player' %}">Player</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>

@@ -20,6 +20,9 @@
         <button type="submit">Найти</button>
     </form>
     <nav class="navigation">
+        <a href="{% url 'add_track' %}">Add track</a>
+    </nav>
+    <nav class="navigation">
         <a href="{% url 'player' %}">All</a>
     </nav>
     {% for artist in artists %}
