@@ -21,6 +21,7 @@ class LoginTestCase(TestCase):
         response = self.client.post(self.url, data=self.user_data)
         self.assertEqual(response.status_code, 200)
 
+
 class RegisterTestCase(TestCase):
     """Тест кейс для функции register"""
 
@@ -63,6 +64,7 @@ class LogoutTestCase(TestCase):
 
 class ProfileTestCase(TestCase):
     """Тест кейс для функции profile"""
+
     def setUp(self):
         self.client = Client()
         self.url = reverse('profile')
