@@ -1,0 +1,32 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Joseph Cartaphilus</title>
+    <link rel="stylesheet" href="{% static 'css/add_playlist.css' %}">
+    <link rel="icon" type="images/png" href="{% static 'css/img/ico.png' %}">
+</head>
+<body>
+<div class="wrapper">
+    <form method="post" enctype="multipart/form-data" style="display: flex; flex-direction: column;">
+        {% csrf_token %}
+        <div style="display: flex; flex-direction: column;">
+            <h1 style="display: flex; align-items: center; justify-content: center">Add Playlist</h1>
+            <div style="margin: 10px 0;">
+                <label for="{{ form.title.id_for_label }}">Input name playlist:</label>
+                {{ form.title }}
+            </div>
+            <div style="margin: 10px 0;">
+                <label for="{{ form.img.id_for_label }}">Choose your poster:</label>
+                {{ form.img }}
+            </div>
+        </div>
+        <button type="submit">Save Playlist</button>
+        <br>
+        <div>
+            <a class="btn-a" href="{% url 'playlists' %}">Playlists</a>
+        </div>
+    </form>
+</div>
+</body>
+</html>
