@@ -1,10 +1,10 @@
 from django.db.models import Q
-from django.shortcuts import render, get_object_or_404,  redirect
+from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.decorators import login_required
 
 from music.models import Track, Artist, Playlist
-from music.forms import TrackForm
+from music.forms import TrackForm, PlaylistForm
 
 
 @login_required
@@ -38,6 +38,7 @@ def playlists(request: HttpRequest) -> HttpResponse:
 
 @login_required
 def playlist(request: HttpRequest, playlist_id) -> HttpResponse:
+    """Функция для отображения одного плейлиста"""
     track_lists = get_object_or_404(Playlist, id=playlist_id)
     tracks = track_lists.tracks.all()
     return render(request, 'playlist.html', {
@@ -52,10 +53,25 @@ def add_track(request: HttpRequest) -> HttpResponse:
     if request.method == 'POST':
         form = TrackForm(request.POST, request.FILES)
         if form.is_valid():
-            pin = form.save(commit=False)
-            pin.user = request.user
-            pin.save()
+            track = form.save(commit=False)
+            track.user = request.user
+            track.save()
             return redirect('player')
     else:
         form = TrackForm()
     return render(request, 'add_track.html', {'form': form})
+
+
+@login_required
+def add_playlist(request: HttpRequest) -> HttpResponse:
+    """Функция создания плейлиста"""
+    if request.method == 'POST':
+        form = PlaylistForm(request.POST, request.FILES)
+        if form.is_valid():
+            list = form.save(commit=False)
+            list.user = request.user
+            list.save()
+            return redirect('playlists')
+    else:
+        form = PlaylistForm()
+    return render(request, 'add_playlist.html', {'form': form})
