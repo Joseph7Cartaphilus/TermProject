@@ -1,5 +1,5 @@
 from django import forms
-from music.models import Track
+from music.models import Track, Playlist
 
 
 class TrackForm(forms.ModelForm):
@@ -8,3 +8,11 @@ class TrackForm(forms.ModelForm):
     class Meta:
         model = Track
         fields = ['title', 'artist', 'audio_file', 'img']
+
+
+class PlaylistForm(forms.ModelForm):
+    """Форма создание плейлиста"""
+
+    class Meta:
+        model = Playlist
+        fields = ['title', 'img']
