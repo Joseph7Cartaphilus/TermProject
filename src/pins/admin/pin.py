@@ -16,8 +16,8 @@ class PinResource(resources.ModelResource):
 
 class PinAdmin(ImportExportModelAdmin):
     """Отображение пинов в админ панели"""
-    fields = ['img', 'artist', 'user']
-    list_display = ['get_image', 'artist', 'user']
+    fields = ['img', 'category', 'user']
+    list_display = ['get_image', 'category', 'user']
     ordering = ['-created_at']
     list_per_page = 20
     resource_classes = [PinResource]
