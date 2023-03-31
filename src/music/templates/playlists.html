@@ -13,7 +13,7 @@
 </head>
 
 <header>
-    <h2 class="logo">Playlists {{ user.username }}</h2>
+    <a href="{% url 'player' %}"><h2 class="logo">Playlists {{ user.username }}</h2></a>
     <nav class="navigation">
         <a href="{% url 'player' %}">Music</a>
     </nav>

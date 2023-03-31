@@ -14,7 +14,7 @@
 </head>
 
 <header>
-    <h2 class="logo">Playlist {{ track_lists.title|upper }}</h2>
+    <a href="{% url 'playlists' %}"><h2 class="logo">Playlist {{ track_lists.title|upper }}</h2></a>
     <nav class="navigation">
         <a href="{% url 'playlists' %}">Playlists</a>
     </nav>

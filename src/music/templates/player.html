@@ -14,7 +14,7 @@
 </head>
 
 <header>
-    <h2 class="logo">Music {{ user.username }}</h2>
+    <a href="{% url 'player' %}"><h2 class="logo">Music {{ user.username }}</h2></a>
     <form method="GET">
         <input type="text" name="q" value="{{ query }}" placeholder="search track">
         <button type="submit">Найти</button>
