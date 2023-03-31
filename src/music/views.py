@@ -94,4 +94,13 @@ def add_track_to_playlist(request: HttpRequest) -> HttpResponse:
         'form': form,
     })
 
-
+@login_required
+def playlist_delete(request, playlist_id):
+    """Функция для удаления плейлиста"""
+    playlist = get_object_or_404(Playlist, id=playlist_id)
+    if request.method == 'POST':
+        playlist.delete()
+        return redirect('playlists')
+    return render(request, 'playlist_delete.html', {
+        'playlist': playlist
+    })

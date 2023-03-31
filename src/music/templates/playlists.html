@@ -34,9 +34,9 @@
         <div class="flip">
             <div class="front">
                 <div class="header-flip">
-                    <h3 class="name">{{ playlist.title|upper }}</h3>
+                    <a href="{% url 'playlist_delete' playlist.id %}"><h3 class="name">{{ playlist.title|upper }}</h3></a>
                 </div>
-                <div class="img-container"><img src="/media/{{ playlist.img }}" alt="img"></div>
+                <a href="{% url 'playlist' playlist.id %}"><div class="img-container"><img src="/media/{{ playlist.img }}" alt="img"></div></a>
                 <p class="description">
                     <b>Number of tracks: </b> {{ playlist.tracks.count }}
                 </p>
