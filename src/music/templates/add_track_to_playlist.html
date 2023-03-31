@@ -13,18 +13,18 @@
         <div style="display: flex; flex-direction: column;">
             <h1 style="display: flex; align-items: center; justify-content: center">Add Track</h1>
             <div style="margin: 10px 0;">
-                <label for="{{ form.playlist.id_for_label }}">Input name track:</label>
+                <label for="{{ form.playlist.id_for_label }}">Choose your playlist:</label>
                 {{ form.playlist }}
             </div>
+            <label for="{{ form.tracks.id_for_label }}">Choose your tracks:</label>
             <div style="margin: 10px 0;">
-                <label for="{{ form.tracks.id_for_label }}">Input name track:</label>
                 {{ form.tracks }}
             </div>
         </div>
         <button type="submit">Save Track</button>
         <br>
         <div>
-            <a class="btn-a" href="{% url 'player' %}">Player</a>
+            <a class="btn-a" href="{% url 'playlists' %}">Playlists</a>
         </div>
     </form>
 </div>
