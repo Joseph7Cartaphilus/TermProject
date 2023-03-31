@@ -8,5 +8,7 @@ urlpatterns = [
     path('playlists/', views.playlists, name='playlists'),  # Плейлисты
     path('playlist/<int:playlist_id>/', views.playlist, name='playlist'),  # Плейлист
     path('add_track/', views.add_track, name='add_track'),  # Добавление трека
-    path('add_playlist/', views.add_playlist, name='add_playlist')  # Добавление плейлиста
+    path('add_playlist/', views.add_playlist, name='add_playlist'),  # Добавление плейлиста
+    path('add_track_to_playlist/', views.add_track_to_playlist, name='add_track_to_playlist'),
+    # Добавление трека в плейлист
 ]

@@ -4,7 +4,7 @@ from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.decorators import login_required
 
 from music.models import Track, Artist, Playlist
-from music.forms import TrackForm, PlaylistForm
+from music.forms import TrackForm, PlaylistForm, AddTrackPlaylistForm
 
 
 @login_required
@@ -75,3 +75,23 @@ def add_playlist(request: HttpRequest) -> HttpResponse:
     else:
         form = PlaylistForm()
     return render(request, 'add_playlist.html', {'form': form})
+
+
+@login_required
+def add_track_to_playlist(request: HttpRequest) -> HttpResponse:
+    """Функция добавление трека в плейлист"""
+    if request.method == 'POST':
+        form = AddTrackPlaylistForm(request.POST)
+        if form.is_valid():
+            playlist = form.cleaned_data['playlist']
+            tracks = form.cleaned_data['tracks']
+            playlist.tracks.add(*form.cleaned_data['tracks'])
+            return redirect('playlist', playlist_id=playlist.id)
+    else:
+        form = AddTrackPlaylistForm()
+
+    return render(request, 'add_track_to_playlist.html', {
+        'form': form,
+    })
+
+
