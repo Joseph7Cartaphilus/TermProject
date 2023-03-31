@@ -94,13 +94,28 @@ def add_track_to_playlist(request: HttpRequest) -> HttpResponse:
         'form': form,
     })
 
+
 @login_required
-def playlist_delete(request, playlist_id):
+def playlist_delete(request: HttpRequest, playlist_id) -> HttpResponse:
     """Функция для удаления плейлиста"""
     playlist = get_object_or_404(Playlist, id=playlist_id)
     if request.method == 'POST':
         playlist.delete()
         return redirect('playlists')
     return render(request, 'playlist_delete.html', {
+        'playlist': playlist
+    })
+
+
+@login_required
+def playlist_edit(request: HttpRequest, playlist_id) -> HttpResponse:
+    """Функция для редактирования плейлиста"""
+    playlist = get_object_or_404(Playlist, id=playlist_id)
+    form = PlaylistForm(request.POST or None, instance=playlist)
+    if request.method == 'POST' and form.is_valid():
+        form.save()
+        return redirect('playlist', playlist_id=playlist_id)
+    return render(request, 'playlist_edit.html', {
+        'form': form,
         'playlist': playlist
     })

@@ -12,4 +12,5 @@ urlpatterns = [
     path('add_track_to_playlist/', views.add_track_to_playlist, name='add_track_to_playlist'),
     # Добавление трека в плейлист
     path('playlist/<int:playlist_id>/delete/', views.playlist_delete, name='playlist_delete'),  # Удаление плейлиста
+    path('playlist/<int:playlist_id>/edit/', views.playlist_edit, name='playlist_edit'),  # Редактирование плейлиста
 ]
