@@ -15,7 +15,7 @@
 
 <header>
     <a href="{% url 'player' %}"><h2 class="logo">Music {{ user.username }}</h2></a>
-    <form method="GET">
+    <form method="GET" style="margin-top: 15px">
         <input type="text" name="q" value="{{ query }}" placeholder="search track">
         <button type="submit">Найти</button>
     </form>
@@ -36,6 +36,15 @@
     <nav class="navigation">
         <a href="{% url 'profile' %}">Profile</a>
     </nav>
+    <nav>
+        <div class="mixer">
+            <h3>Volume</h3>
+            <div class="slider-container">
+                <input type="range" min="0" max="100" value="50" class="slider">
+            </div>
+        </div>
+    </nav>
+
 </header>
 
 <body>

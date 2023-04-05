@@ -1,7 +1,8 @@
-let soundButtons = document.querySelectorAll('.soundbutton'),
-    audioElements = document.querySelectorAll('.audio'),
-    headings = document.querySelectorAll('h4'),
-    subheadings = document.querySelectorAll('h5');
+const soundButtons = document.querySelectorAll('.soundbutton');
+const audioElements = document.querySelectorAll('.audio');
+const headings = document.querySelectorAll('h4');
+const subheadings = document.querySelectorAll('h5');
+const slider = document.querySelector('.slider');
 
 let currentTrack = null;
 
@@ -31,4 +32,13 @@ soundButtons.forEach((soundButton, index) => {
             currentTrack = null;
         }
     })
+});
+
+slider.addEventListener('input', function() {
+  let volume = this.value / 100;
+
+  // проходимся по всем аудио элементам и устанавливаем им громкость
+  audioElements.forEach(audio => {
+    audio.volume = volume;
+  });
 });
