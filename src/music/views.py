@@ -10,7 +10,7 @@ from music.forms import TrackForm, PlaylistForm, AddTrackPlaylistForm
 @login_required
 def player(request: HttpRequest, artist_id=None) -> HttpResponse:
     """Функция для отображения всех треков | артистов"""
-    query = request.GET.get('q')
+    query = request.GET.get('q', '')
     if query:
         tracks = Track.objects.filter(Q(title__icontains=query) | Q(artist__name__icontains=query))
     else:
