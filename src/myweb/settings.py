@@ -42,6 +42,10 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
+    "rest_framework",
+    "rest_framework.authtoken",
+    "drf_yasg",
+
     'users',
     'pins',
     'music',
@@ -165,3 +169,11 @@ LOGOUT_REDIRECT_URL = 'http://127.0.0.1:8000'
 SOCIAL_AUTH_URL_NAMESPACE = 'social'
 
 SOCIAL_AUTH_POSTGRES_JSONFIELD_ENABLED = True
+
+
+REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.BasicAuthentication',
+        'rest_framework.authentication.SessionAuthentication',
+    ]
+}
