@@ -1,10 +1,34 @@
+from rest_framework import status
+from rest_framework.response import Response
+from rest_framework.decorators import api_view, permission_classes
+from rest_framework.authtoken.models import Token
+from rest_framework.exceptions import AuthenticationFailed
+from drf_yasg.utils import swagger_auto_schema
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse, HttpRequest
 from django.urls import reverse
 from django.contrib import auth, messages
+from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
+from users.serializers import LoginSerializer, TokenResponseSerializer
+
+
+@swagger_auto_schema(method="POST", request_body=LoginSerializer,
+                     responses={status.HTTP_200_OK: TokenResponseSerializer()})
+@api_view(["POST"])
+@permission_classes([])
+def auth_view(request):
+    serializer = LoginSerializer(data=request.data)
+    serializer.is_valid(raise_exception=True)
+    user = authenticate(request, **serializer.validated_data)
+    if user is None:
+        raise AuthenticationFailed()
+    token = Token.objects.create(user=user)
+    response_data = {"token": token.key}
+    response_serializer = TokenResponseSerializer(response_data)
+    return Response(response_serializer.data)
 
 
 def login_or_register(request: HttpRequest) -> HttpResponse:
