@@ -1,11 +1,11 @@
-from rest_framework import viewsets
+from rest_framework import viewsets, permissions
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.decorators import login_required
 
 from pins.models import Pin, PinCategory
 from pins.forms import PinForm
-from pins.serializers import PinSerializer
+from pins.serializers import PinSerializer, PinCategorySerializer
 
 
 @login_required
@@ -46,3 +46,17 @@ class PinViewSet(viewsets.ModelViewSet):
        DELETE /pins/<id>/ - удалить пин с указанным идентификатором"""
     queryset = Pin.objects.all()
     serializer_class = PinSerializer
+    permission_classes = [permissions.IsAdminUser]
+
+
+class PinCategoryViewSet(viewsets.ModelViewSet):
+    """
+    GET /categories/ - получить список всех категорий пинов
+    POST /categories/ - создать новую категорию пинов
+    GET /categories/<id>/ - получить категорию пинов с указанным идентификатором
+    PUT /categories/<id>/ - полностью обновить категорию пинов с указанным идентификатором
+    PATCH /categories/<id>/ - частично обновить категорию пинов с указанным идентификатором
+    DELETE /categories/<id>/ - удалить категорию пинов с указанным идентификатором"""
+    queryset = PinCategory.objects.all()
+    serializer_class = PinCategorySerializer
+    permission_classes = [permissions.IsAdminUser]
