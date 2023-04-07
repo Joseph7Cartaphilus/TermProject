@@ -1,9 +1,11 @@
+from rest_framework import viewsets
 from django.shortcuts import render, get_object_or_404, redirect
 from django.http import HttpResponse, HttpRequest
 from django.contrib.auth.decorators import login_required
 
 from pins.models import Pin, PinCategory
 from pins.forms import PinForm
+from pins.serializers import PinSerializer
 
 
 @login_required
@@ -33,3 +35,14 @@ def add_pin(request: HttpRequest) -> HttpResponse:
     else:
         form = PinForm()
     return render(request, 'add_pin.html', {'form': form})
+
+
+class PinViewSet(viewsets.ModelViewSet):
+    """GET /pins/ - получить список всех пинов
+       POST /pins/ - создать новый пин
+       GET /pins/<id>/ - получить пин с указанным идентификатором
+       PUT /pins/<id>/ - полностью обновить пин с указанным идентификатором
+       PATCH /pins/<id>/ - частично обновить пин с указанным идентификатором
+       DELETE /pins/<id>/ - удалить пин с указанным идентификатором"""
+    queryset = Pin.objects.all()
+    serializer_class = PinSerializer
