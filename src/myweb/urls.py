@@ -4,6 +4,7 @@ from django.conf.urls.static import static
 from django.conf import settings
 
 from users import views
+from myweb.yasg import urlpatterns as doc_urls
 
 urlpatterns = [
     path('admin/', admin.site.urls),
@@ -14,6 +15,8 @@ urlpatterns = [
     path('music/', include('music.urls')),  # Приложение music
     path('api/v1/', include('pins.urls')),  # api для приложения pins
 ]
+
+urlpatterns += doc_urls  # Документация swagger
 
 # Настройка для MEDIA
 if settings.DEBUG:
