@@ -7,6 +7,7 @@ from pins import views
 
 router = routers.DefaultRouter()
 router.register(r'pins', views.PinViewSet)
+router.register(r'categories', views.PinCategoryViewSet)
 
 urlpatterns = [
     path('gallery/', views.gallery, name='gallery'),  # Галерея пинов
