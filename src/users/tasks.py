@@ -1,6 +1,5 @@
 from myweb.celery import app
 
-
 from .service import send
 
 

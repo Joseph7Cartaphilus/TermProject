@@ -23,3 +23,5 @@
 - 'python manage.py loaddata путь/название.json' - Для скачивание данных.
 
 - 'python manage.py test && coverage report' - Проверка покрытия тестов.
+
+- 'celery -A myweb worker -l info' - Запуск воркера celery.
