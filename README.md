@@ -25,3 +25,5 @@
 - 'python manage.py test && coverage report' - Проверка покрытия тестов.
 
 - 'celery -A myweb worker -l info' - Запуск воркера celery.
+
+- 'celery -A myweb beat -l info' - Запуск расписания celery.

@@ -19,7 +19,7 @@ from django.views.generic import CreateView
 from .models import Contact
 from .service import send
 from .forms import ContactForm
-from .tasks import send_spam_email
+from .tasks import send_spam_email, send_beat_email
 
 @swagger_auto_schema(
     method="POST", request_body=LoginSerializer, responses={status.HTTP_200_OK: TokenResponseSerializer()}
@@ -94,5 +94,6 @@ class ContactView(CreateView):
     def form_valid(self, form):
         form.save()
         # send(form.instance.email)  # работает
-        send_spam_email.delay(form.instance.email)
+        # send_spam_email.delay(form.instance.email)
+        send_beat_email.delay(form.instance.email)
         return super().form_valid(form)
