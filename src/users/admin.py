@@ -8,52 +8,60 @@ from .models import User
 @admin.register(User)
 class UserAdmin(DjangoUserAdmin):
     """Модель пользователя для Административной панели"""
+
     model = User
-    readonly_fields = ('date_joined', 'last_login', 'is_active', 'get_image')
-    list_display_links = ('email', 'username')
-    list_display = (
-        'email', 'username', 'get_image')
+    readonly_fields = ("date_joined", "last_login", "is_active", "get_image")
+    list_display_links = ("email", "username")
+    list_display = ("email", "username", "get_image")
     fieldsets = (
-        ('Info', {
-            'fields': (
-                'username', 'first_name',
-                'last_name', 'email',
-            )
-        }),
-        ('Login', {
-            'fields': ('date_joined', 'last_login', 'is_active'),
-        }),
-        ('Staff', {
-            'fields': ('is_superuser', 'is_staff'),
-        }),
-        ('User password', {
-            'classes': ('collapse',),
-            'fields': ('password',),
-        }),
-        ('Image', {
-            'fields': ('image', 'get_image')
-        }),
+        (
+            "Info",
+            {
+                "fields": (
+                    "username",
+                    "first_name",
+                    "last_name",
+                    "email",
+                )
+            },
+        ),
+        (
+            "Login",
+            {
+                "fields": ("date_joined", "last_login", "is_active"),
+            },
+        ),
+        (
+            "Staff",
+            {
+                "fields": ("is_superuser", "is_staff"),
+            },
+        ),
+        (
+            "User password",
+            {
+                "classes": ("collapse",),
+                "fields": ("password",),
+            },
+        ),
+        ("Image", {"fields": ("image", "get_image")}),
     )
     add_fieldsets = (
         (
-            'Info',
+            "Info",
             {
-                'classes': ('wide',),
-                'fields': (
-                    'username', 'first_name',
-                    'last_name', 'email',
+                "classes": ("wide",),
+                "fields": (
+                    "username",
+                    "first_name",
+                    "last_name",
+                    "email",
                 ),
             },
         ),
-        ('Password', {
-            'fields': ('password1', 'password2')
-        }),
-        ('Image', {
-            'fields': ('image',)
-        }),
-        ('Permissions', {
-            'fields': ('is_superuser', 'is_staff')
-        }),
+        ("Password", {"fields": ("password1", "password2")}),
+        ("Image", {"fields": ("image",)}),
+        ("Permissions", {"fields": ("is_superuser", "is_staff")}),
     )
 
     def get_image(self, obj):
@@ -61,6 +69,6 @@ class UserAdmin(DjangoUserAdmin):
         if obj.image:
             return mark_safe(f'<img src="{obj.image.url}" width="50" height="60">')
         else:
-            return '-'
+            return "-"
 
     get_image.short_description = "Avatar"

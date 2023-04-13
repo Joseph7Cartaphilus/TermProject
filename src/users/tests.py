@@ -10,37 +10,35 @@ class LoginTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('login_or_register')
-        self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
+        self.url = reverse("login_or_register")
+        self.user_data = {"username": "testuser", "password": "testpassword"}
         self.user = get_user_model().objects.create_user(**self.user_data)
 
     def test_login_success(self):
         response = self.client.post(self.url, data=self.user_data)
         self.assertEqual(response.status_code, 200)
 
+
 class RegisterTestCase(TestCase):
     """Тест кейс для функции register"""
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('login_or_register')
+        self.url = reverse("login_or_register")
         self.user_data = {
-            'first_name': 'firstname',
-            'last_name': 'last_name',
-            'username': 'testuser',
-            'email': 'testuser@test.com',
-            'password': 'testpassword',
+            "first_name": "firstname",
+            "last_name": "last_name",
+            "username": "testuser",
+            "email": "testuser@test.com",
+            "password": "testpassword",
         }
         self.user = get_user_model().objects.create_user(**self.user_data)
 
     def test_register_view(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'forest.html')
-        self.assertIsInstance(response.context['register_form'], UserRegistrationForm)
+        self.assertTemplateUsed(response, "forest.html")
+        self.assertIsInstance(response.context["register_form"], UserRegistrationForm)
 
 
 class LogoutTestCase(TestCase):
@@ -48,10 +46,10 @@ class LogoutTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('login_or_register')
+        self.url = reverse("login_or_register")
         self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword',
+            "username": "testuser",
+            "password": "testpassword",
         }
         self.user = get_user_model().objects.create_user(**self.user_data)
         self.client.logout()
@@ -63,18 +61,19 @@ class LogoutTestCase(TestCase):
 
 class ProfileTestCase(TestCase):
     """Тест кейс для функции profile"""
+
     def setUp(self):
         self.client = Client()
-        self.url = reverse('profile')
+        self.url = reverse("profile")
         self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword',
+            "username": "testuser",
+            "password": "testpassword",
         }
         self.user = get_user_model().objects.create_user(**self.user_data)
-        self.profile_url = reverse('profile')
+        self.profile_url = reverse("profile")
 
     def test_profile_view_with_login(self):
-        self.client.login(username='testuser', password='testpassword')
+        self.client.login(username="testuser", password="testpassword")
         response = self.client.get(self.profile_url)
         self.assertEqual(response.status_code, 200)
-        self.assertTemplateUsed(response, 'profile.html')
+        self.assertTemplateUsed(response, "profile.html")

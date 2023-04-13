@@ -7,7 +7,7 @@ class TrackForm(forms.ModelForm):
 
     class Meta:
         model = Track
-        fields = ['title', 'artist', 'audio_file', 'img']
+        fields = ["title", "artist", "audio_file", "img"]
 
 
 class PlaylistForm(forms.ModelForm):
@@ -15,7 +15,7 @@ class PlaylistForm(forms.ModelForm):
 
     class Meta:
         model = Playlist
-        fields = ['title', 'img']
+        fields = ["title", "img"]
 
 
 class AddTrackPlaylistForm(forms.Form):

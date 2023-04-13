@@ -11,15 +11,16 @@ class TrackResource(resources.ModelResource):
 
     class Meta:
         model = Track
-        fields = ('title', 'artist__name', 'audio_file', 'user__username')
-        export_order = ('title', 'artist__name', 'audio_file', 'user__username')
+        fields = ("title", "artist__name", "audio_file", "user__username")
+        export_order = ("title", "artist__name", "audio_file", "user__username")
 
 
 class TrackAdmin(ImportExportModelAdmin):
     """Отображение треков в админ панели"""
-    fields = ['title', 'audio_file', 'img', 'user', 'artist']
-    list_display = ['title', 'artist', 'get_image']
-    ordering = ['-created_at']
+
+    fields = ["title", "audio_file", "img", "user", "artist"]
+    list_display = ["title", "artist", "get_image"]
+    ordering = ["-created_at"]
     list_per_page = 20
     resource_classes = [TrackResource]
 
@@ -28,6 +29,6 @@ class TrackAdmin(ImportExportModelAdmin):
         if obj.img:
             return mark_safe(f'<img src="{obj.img.url}" width="60" height="60">')
         else:
-            return '-'
+            return "-"
 
     get_image.short_description = "Track img"

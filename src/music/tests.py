@@ -15,18 +15,15 @@ class TrackListViewTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('add_track')
-        self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
+        self.url = reverse("add_track")
+        self.user_data = {"username": "testuser", "password": "testpassword"}
         self.user = get_user_model().objects.create_user(**self.user_data)
         self.client.force_login(self.user)
 
-        self.artist = Artist.objects.create(name='Test Artist')
-        self.track1 = Track.objects.create(title='Test Track 1', artist=self.artist, user=self.user)
-        self.track2 = Track.objects.create(title='Test Track 2', artist=self.artist, user=self.user)
-        self.track3 = Track.objects.create(title='Test Track 3', artist=self.artist, user=self.user)
+        self.artist = Artist.objects.create(name="Test Artist")
+        self.track1 = Track.objects.create(title="Test Track 1", artist=self.artist, user=self.user)
+        self.track2 = Track.objects.create(title="Test Track 2", artist=self.artist, user=self.user)
+        self.track3 = Track.objects.create(title="Test Track 3", artist=self.artist, user=self.user)
 
     def test_track_upload(self):
         self.assertIsNotNone(self.track1.title)
@@ -37,18 +34,15 @@ class TrackListAddViewTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('add_track')
-        self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
+        self.url = reverse("add_track")
+        self.user_data = {"username": "testuser", "password": "testpassword"}
         self.user = get_user_model().objects.create_user(**self.user_data)
         self.client.force_login(self.user)
 
     def test_track_request(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertIsInstance(response.context['form'], TrackForm)
+        self.assertIsInstance(response.context["form"], TrackForm)
 
 
 class PlaylistListViewTestCase(TestCase):
@@ -56,15 +50,12 @@ class PlaylistListViewTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('add_playlist')
-        self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
+        self.url = reverse("add_playlist")
+        self.user_data = {"username": "testuser", "password": "testpassword"}
         self.user = get_user_model().objects.create_user(**self.user_data)
         self.client.force_login(self.user)
 
-        self.playlist = Playlist.objects.create(title='Test Playlist', user=self.user)
+        self.playlist = Playlist.objects.create(title="Test Playlist", user=self.user)
 
     def test_playlist_upload(self):
         self.assertIsNotNone(self.playlist.title)
@@ -75,18 +66,15 @@ class PlaylistListAddViewTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('add_playlist')
-        self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
+        self.url = reverse("add_playlist")
+        self.user_data = {"username": "testuser", "password": "testpassword"}
         self.user = get_user_model().objects.create_user(**self.user_data)
         self.client.force_login(self.user)
 
     def test_playlist_request(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertIsInstance(response.context['form'], PlaylistForm)
+        self.assertIsInstance(response.context["form"], PlaylistForm)
 
 
 class Track_To_PlaylistListViewTestCase(TestCase):
@@ -94,15 +82,12 @@ class Track_To_PlaylistListViewTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('add_track_to_playlist')
-        self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
+        self.url = reverse("add_track_to_playlist")
+        self.user_data = {"username": "testuser", "password": "testpassword"}
         self.user = get_user_model().objects.create_user(**self.user_data)
         self.client.force_login(self.user)
 
-        self.playlist = Playlist.objects.create(title='Test Playlist', user=self.user)
+        self.playlist = Playlist.objects.create(title="Test Playlist", user=self.user)
 
     def test_playlist_upload(self):
         self.assertIsNotNone(self.playlist.title)
@@ -113,15 +98,12 @@ class TrackPlaylistListAddViewTestCase(TestCase):
 
     def setUp(self):
         self.client = Client()
-        self.url = reverse('add_track_to_playlist')
-        self.user_data = {
-            'username': 'testuser',
-            'password': 'testpassword'
-        }
+        self.url = reverse("add_track_to_playlist")
+        self.user_data = {"username": "testuser", "password": "testpassword"}
         self.user = get_user_model().objects.create_user(**self.user_data)
         self.client.force_login(self.user)
 
     def test_playlist_request(self):
         response = self.client.get(self.url)
         self.assertEqual(response.status_code, 200)
-        self.assertIsInstance(response.context['form'], AddTrackPlaylistForm)
+        self.assertIsInstance(response.context["form"], AddTrackPlaylistForm)

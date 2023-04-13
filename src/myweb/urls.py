@@ -7,13 +7,13 @@ from users import views
 from myweb.yasg import urlpatterns as doc_urls
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('', views.main, name='main'),  # Главная страница (Parallax Forest)
-    path('', include('social_django.urls', namespace='social')),  # OAuth 2
-    path('users/', include('users.urls')),  # Приложение users
-    path('pins/', include('pins.urls')),  # Приложение pins
-    path('music/', include('music.urls')),  # Приложение music
-    path('api/v1/', include('pins.urls')),  # api для приложения pins
+    path("admin/", admin.site.urls),
+    path("", views.main, name="main"),  # Главная страница (Parallax Forest)
+    path("", include("social_django.urls", namespace="social")),  # OAuth 2
+    path("users/", include("users.urls")),  # Приложение users
+    path("pins/", include("pins.urls")),  # Приложение pins
+    path("music/", include("music.urls")),  # Приложение music
+    path("api/v1/", include("pins.urls")),  # api для приложения pins
 ]
 
 urlpatterns += doc_urls  # Документация swagger

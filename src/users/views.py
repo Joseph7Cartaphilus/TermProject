@@ -15,8 +15,9 @@ from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from users.serializers import LoginSerializer, TokenResponseSerializer
 
 
-@swagger_auto_schema(method="POST", request_body=LoginSerializer,
-                     responses={status.HTTP_200_OK: TokenResponseSerializer()})
+@swagger_auto_schema(
+    method="POST", request_body=LoginSerializer, responses={status.HTTP_200_OK: TokenResponseSerializer()}
+)
 @api_view(["POST"])
 @permission_classes([])
 def auth_view(request):
@@ -33,51 +34,46 @@ def auth_view(request):
 
 def login_or_register(request: HttpRequest) -> HttpResponse:
     """Функция аутентификации и регистрации пользователя"""
-    login_form = UserLoginForm(prefix='login')
-    register_form = UserRegistrationForm(prefix='register')
+    login_form = UserLoginForm(prefix="login")
+    register_form = UserRegistrationForm(prefix="register")
 
-    if 'login-username' in request.POST:
+    if "login-username" in request.POST:
         # Обработка формы аутентификации
-        form = UserLoginForm(data=request.POST, prefix='login')
+        form = UserLoginForm(data=request.POST, prefix="login")
         if form.is_valid():
-            username = form.cleaned_data['username']
-            password = form.cleaned_data['password']
+            username = form.cleaned_data["username"]
+            password = form.cleaned_data["password"]
             user = auth.authenticate(username=username, password=password)
             if user and user.is_active:
                 auth.login(request, user)
-                return HttpResponseRedirect(reverse('profile'))
-    elif 'register-email' in request.POST:
+                return HttpResponseRedirect(reverse("profile"))
+    elif "register-email" in request.POST:
         # Обработка формы регистрации
-        form = UserRegistrationForm(data=request.POST, prefix='register')
+        form = UserRegistrationForm(data=request.POST, prefix="register")
         if form.is_valid():
             user = form.save(commit=False)
-            username = user.email.split('@')[0]
+            username = user.email.split("@")[0]
             user.username = username
             user.save()
             form.save()
-            messages.success(request, 'You have successfully registered')
-            return HttpResponseRedirect(reverse('login_or_register'))
-    return render(request, 'forest.html', {
-        'login_form': login_form,
-        'register_form': register_form
-    })
+            messages.success(request, "You have successfully registered")
+            return HttpResponseRedirect(reverse("login_or_register"))
+    return render(request, "forest.html", {"login_form": login_form, "register_form": register_form})
 
 
 @login_required
 def profile(request: HttpRequest) -> HttpResponse:
     """Функция для авторизации пользователя профиль"""
-    if request.method == 'POST':
+    if request.method == "POST":
         form = UserProfileForm(data=request.POST, files=request.FILES, instance=request.user)
         if form.is_valid():
             form.save()
-            return HttpResponseRedirect(reverse('profile'))
+            return HttpResponseRedirect(reverse("profile"))
     else:
         form = UserProfileForm(instance=request.user)
-    return render(request, 'profile.html', {
-        'form': form
-    })
+    return render(request, "profile.html", {"form": form})
 
 
 def main(request: HttpRequest) -> HttpResponse:
     """Основная страница parallax Forest"""
-    return render(request, 'main.html')
+    return render(request, "main.html")
