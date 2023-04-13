@@ -168,10 +168,30 @@ SOCIAL_AUTH_URL_NAMESPACE = "social"
 
 SOCIAL_AUTH_POSTGRES_JSONFIELD_ENABLED = True
 
-
 REST_FRAMEWORK = {
     "DEFAULT_AUTHENTICATION_CLASSES": [
         "rest_framework.authentication.BasicAuthentication",
         "rest_framework.authentication.SessionAuthentication",
     ]
 }
+
+# smtp
+EMAIL_USE_TLS = True
+EMAIL_HOST = "smtp.gmail.com"
+EMAIL_HOST_USER = "lantotalami@gmail.com"
+EMAIL_HOST_PASSWORD = "tqohqdbyewebwdpc"
+EMAIL_PORT = 587
+
+# Redis related settings
+
+REDIS_HOST = 'localhost'
+REDIS_PORT = '6379'
+CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
+CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+CELERY_ACCEPT_CONTENT = ['application/json']
+CELERY_TASK_SERIALIZER = 'json'
+CELERY_RESULT_SERIALIZER = 'json'
+
+# Поднять контейнер с редис
+# celery -A myweb worker -l info

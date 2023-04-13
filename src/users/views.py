@@ -12,12 +12,13 @@ from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
 
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
-from users.serializers import LoginSerializer, TokenResponseSerializer
+from .serializers import LoginSerializer, TokenResponseSerializer
 
 
 from django.views.generic import CreateView
-from users.models import Contact
-from users.service import send
+from .models import Contact
+from .service import send
+from .forms import ContactForm
 #from users.tasks import
 
 @swagger_auto_schema(

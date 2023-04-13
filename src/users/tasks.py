@@ -1,8 +1,10 @@
-from celery import shared_task
-
-from src.myweb.celery import app
+from myweb.celery import app
 
 
-def write_file(email):
-    send(email)
-    return True
+from .service import send
+
+
+
+@app.task
+def send_spam_email(user_email):
+    send(user_email)
