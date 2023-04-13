@@ -21,3 +21,5 @@
 - 'python manage.py dumpdata имя приложения.название модели > название.json' - Для сохранения данных в БД.
 
 - 'python manage.py loaddata путь/название.json' - Для скачивание данных.
+
+- 'python manage.py test && coverage report' - Проверка покрытия тестов.
