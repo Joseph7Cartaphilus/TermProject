@@ -15,6 +15,11 @@ from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
 from users.serializers import LoginSerializer, TokenResponseSerializer
 
 
+from django.views.generic import CreateView
+from users.models import Contact
+from users.service import send
+#from users.tasks import
+
 @swagger_auto_schema(
     method="POST", request_body=LoginSerializer, responses={status.HTTP_200_OK: TokenResponseSerializer()}
 )
@@ -77,3 +82,16 @@ def profile(request: HttpRequest) -> HttpResponse:
 def main(request: HttpRequest) -> HttpResponse:
     """Основная страница parallax Forest"""
     return render(request, "main.html")
+
+
+class ContactView(CreateView):
+    model = Contact
+    form_class = ContactForm
+    success_url = "/"
+    template_name = "contact.html"
+
+    def form_valid(self, form):
+        form.save()
+        send(form.instance.email)  # работает
+        # send_spam_email.delay(form.instance.email)
+        return super().form_valid(form)
