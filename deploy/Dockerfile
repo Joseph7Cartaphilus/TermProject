@@ -1,9 +1,8 @@
-FROM python:3.9.7
+FROM python:3.10
 
 ENV PYTHONUNBUFFERED 1
 
-WORKDIR /app
-
+WORKDIR /app/src
 
 COPY requirements.txt .
 RUN pip install -r requirements.txt
@@ -12,5 +11,5 @@ COPY . .
 
 EXPOSE 8000
 
-CMD python src/manage.py migrate && \
-    python src/manage.py runserver 0.0.0.0:8000
+CMD python manage.py migrate && \
+    python manage.py runserver 0.0.0.0:8000
