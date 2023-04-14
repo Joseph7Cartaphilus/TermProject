@@ -17,4 +17,4 @@ jobs:
 
       - name: Run Django Tests
         run: |
-          docker run --rm joseph7cartaphilus/termproject:latest sh -c "cd src && python manage.py test"
+          docker run --rm joseph7cartaphilus/termproject:latest sh -c "python src/manage.py test"
