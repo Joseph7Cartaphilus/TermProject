@@ -1,0 +1,20 @@
+name: Test Docker Image
+
+on:
+  push:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout the repository
+        uses: actions/checkout@v2
+
+      - name: Build Docker image
+        run: docker build ./deploy -t joseph7cartaphilus/termproject:latest
+
+      - name: Run Django Tests
+        run: |
+          docker run -it --rm joseph7cartaphilus/termproject:latest sh -c "cd src && python manage.py test"
