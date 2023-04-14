@@ -1,7 +1,7 @@
 from django.contrib.auth.forms import AuthenticationForm, UserCreationForm, UserChangeForm
 from django import forms
 
-from users.models import User, Contact
+from users.models import User
 
 
 class UserLoginForm(AuthenticationForm):
@@ -44,11 +44,3 @@ class UserProfileForm(UserChangeForm):
         for field_name, filed in self.fields.items():
             filed.widget.attrs["class"] = "form-control py-4"
         self.fields["image"].widget.attrs["class"] = "custom-file-input"
-
-
-class ContactForm(forms.ModelForm):
-    """Форма подписки по email"""
-
-    class Meta:
-        model = Contact
-        fields = '__all__'
