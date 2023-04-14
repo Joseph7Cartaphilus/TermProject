@@ -9,6 +9,8 @@ RUN pip install -r requirements.txt
 
 COPY . .
 
+RUN python manage.py test
+
 EXPOSE 8000
 
 CMD python manage.py migrate && \
