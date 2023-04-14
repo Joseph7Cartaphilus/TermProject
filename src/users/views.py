@@ -4,6 +4,7 @@ from rest_framework.decorators import api_view, permission_classes
 from rest_framework.authtoken.models import Token
 from rest_framework.exceptions import AuthenticationFailed
 from drf_yasg.utils import swagger_auto_schema
+from django.views.generic import CreateView
 from django.shortcuts import render, redirect, HttpResponseRedirect
 from django.http import HttpResponse, HttpRequest
 from django.urls import reverse
@@ -16,6 +17,10 @@ from users.serializers import LoginSerializer, TokenResponseSerializer
 
 from .tasks import send_spam_email
 from .service import send
+from users.models import Contact
+from .forms import ContactForm
+
+
 @swagger_auto_schema(
     method="POST", request_body=LoginSerializer, responses={status.HTTP_200_OK: TokenResponseSerializer()}
 )
@@ -83,8 +88,8 @@ def main(request: HttpRequest) -> HttpResponse:
 class ContactView(CreateView):
     model = Contact
     form_class = ContactForm
-    success_url = "main/contact.html"
-    template_name = "main/contact.html"
+    success_url = "/"
+    template_name = "contact.html"
 
     def form_valid(self, form):
         form.save()
