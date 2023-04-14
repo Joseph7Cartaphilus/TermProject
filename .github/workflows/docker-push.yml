@@ -22,4 +22,5 @@ jobs:
           password: Joseph789
 
       - name: Push Docker image
-        run: docker push termproject:latest
+        run: docker push josephfan/termproject:latest
+
