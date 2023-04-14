@@ -20,5 +20,4 @@ jobs:
         env:
           DJANGO_SETTINGS_MODULE: project.settings
         run: |
-          cd ./src
-          python manage.py test
+          cd src && python manage.py test
