@@ -21,6 +21,7 @@ drf-yasg = "^1.21.5"
 djangorestframework = "^3.14.0"
 coverage = "^7.2.3"
 pre-commit = "^3.2.2"
+channels = "^4.0.0"
 
 
 [tool.poetry.group.dev.dependencies]
