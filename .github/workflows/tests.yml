@@ -1,4 +1,4 @@
-name: Test Docker Image
+name: Test
 
 on:
   push:
@@ -17,4 +17,4 @@ jobs:
 
       - name: Run Django Tests
         run: |
-          docker run -it --rm joseph7cartaphilus/termproject:latest sh -c "cd src && python manage.py test"
+          docker run --rm joseph7cartaphilus/termproject:latest sh -c "cd src && python manage.py test"
