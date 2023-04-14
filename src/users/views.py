@@ -10,18 +10,12 @@ from django.urls import reverse
 from django.contrib import auth, messages
 from django.contrib.auth import authenticate
 from django.contrib.auth.decorators import login_required
-from django.contrib.auth.forms import PasswordResetForm
 
 from .forms import UserLoginForm, UserRegistrationForm, UserProfileForm
-from .serializers import LoginSerializer, TokenResponseSerializer
+from users.serializers import LoginSerializer, TokenResponseSerializer
 
-from django.views.generic import CreateView
-from .models import Contact
+from .tasks import send_spam_email
 from .service import send
-from .forms import ContactForm
-from .tasks import send_spam_email, send_beat_email, send_password_reset_email
-
-
 @swagger_auto_schema(
     method="POST", request_body=LoginSerializer, responses={status.HTTP_200_OK: TokenResponseSerializer()}
 )
@@ -89,25 +83,11 @@ def main(request: HttpRequest) -> HttpResponse:
 class ContactView(CreateView):
     model = Contact
     form_class = ContactForm
-    success_url = "/"
-    template_name = "contact.html"
+    success_url = "main/contact.html"
+    template_name = "main/contact.html"
 
     def form_valid(self, form):
         form.save()
-        # send(form.instance.email)  # работает
+        # send(form.instance.email) # работает
         send_spam_email.delay(form.instance.email)
-        # send_beat_email.delay(form.instance.email)
         return super().form_valid(form)
-
-
-def password_reset(request):
-    if request.method == 'POST':
-        form = PasswordResetForm(request.POST)
-        if form.is_valid():
-            email = form.cleaned_data['email']
-    # generate reset password URL and pass it to the Celery task
-        url = 'https://example.com/reset-password/'
-        send_password_reset_email.delay(email, url)
-    else:
-        form = PasswordResetForm()
-    return render(request, 'password_reset.html', {'form': form})

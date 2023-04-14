@@ -179,14 +179,14 @@ REST_FRAMEWORK = {
 EMAIL_USE_TLS = True
 EMAIL_HOST = "smtp.gmail.com"
 EMAIL_HOST_USER = "lantotalami@gmail.com"
-EMAIL_HOST_PASSWORD = "tqohqdbyewebwdpc"
+EMAIL_HOST_PASSWORD = "tmvhgehobvmgfjmo"
+# spgzhbduwljfilkd
 EMAIL_PORT = 587
 
-# Redis related settings
-
-REDIS_HOST = 'localhost'
-REDIS_PORT = '6379'
-CELERY_BROKER_URL = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
+# REDIS related settings
+REDIS_HOST = "127.0.0.1"
+REDIS_PORT = "6379"
+CELERY_BROKER_URL = "redis://" + REDIS_HOST + ":" + REDIS_PORT + "/0"
 CELERY_BROKER_TRANSPORT_OPTIONS = {'visibility_timeout': 3600}
 CELERY_RESULT_BACKEND = 'redis://' + REDIS_HOST + ':' + REDIS_PORT + '/0'
 CELERY_ACCEPT_CONTENT = ['application/json']

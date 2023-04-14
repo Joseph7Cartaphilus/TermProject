@@ -2,7 +2,7 @@ from django.contrib import admin
 from django.contrib.auth.admin import UserAdmin as DjangoUserAdmin
 from django.utils.safestring import mark_safe
 
-from .models import User, Contact
+from .models import User
 
 
 @admin.register(User)
@@ -72,9 +72,3 @@ class UserAdmin(DjangoUserAdmin):
             return "-"
 
     get_image.short_description = "Avatar"
-
-
-@admin.register(Contact)
-class ContactAdmin(admin.ModelAdmin):
-    model = Contact
-    list_display = ['email', 'date']

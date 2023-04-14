@@ -9,7 +9,5 @@ urlpatterns = [
     path("logout/", LogoutView.as_view(next_page=settings.LOGOUT_REDIRECT_URL), name="logout"),
     # Главная страница (Parallax Forest)
     path("profile/", views.profile, name="profile"),  # Страница профиля пользователя
-    path("auth/", views.auth_view, name="auth"),  # Авторизация по токенам
-    path('contact/', views.ContactView.as_view(), name='contact'),
-    path('password_reset/', views.password_reset, name='password_reset')
+    path("auth/", views.auth_view, name="auth"),
 ]
