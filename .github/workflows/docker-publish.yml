@@ -2,16 +2,15 @@ name: Build Docker Image
 
 on:
   push:
-    branches:
-      - main
+    branches: [main]
 
 jobs:
   build:
     runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout repository
+      - name: Checkout the repository
         uses: actions/checkout@v2
 
       - name: Build Docker image
-        run: |
-          docker build -t joseph7cartaphilus/termproject:latest
+        run: docker build ./deploy -t joseph7cartaphilus/termproject:latest
