@@ -13,7 +13,9 @@ urlpatterns = [
     path("users/", include("users.urls")),  # Приложение users
     path("pins/", include("pins.urls")),  # Приложение pins
     path("music/", include("music.urls")),  # Приложение music
+    path("movies/", include("movie_app.urls")),  # Приложение movie
     path("api/v1/", include("pins.urls")),  # api для приложения pins
+    path("ckeditor/", include("ckeditor_uploader.urls")),
 ]
 
 urlpatterns += doc_urls  # Документация swagger
