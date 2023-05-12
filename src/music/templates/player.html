@@ -25,11 +25,6 @@
     <nav class="navigation">
         <a href="{% url 'player' %}">All</a>
     </nav>
-    {% for artist in artists %}
-        <nav class="navigation">
-            <a href="{% url 'artist' artist.id %}">{{ artist.name }}</a>
-        </nav>
-    {% endfor %}
     <nav class="navigation">
         <a href="{% url 'playlists' %}">Playlists</a>
     </nav>
@@ -49,7 +44,7 @@
 
 <body>
 {% for track in tracks %}
-    <div class="flip-container">
+    <div class="flip-container" style="margin-top: 200px">
         <div class="flip">
             <div class="front">
                 <div class="header-flip">
