@@ -137,9 +137,10 @@ USE_TZ = True
 STATIC_URL = "static/"
 
 STATICFILES_DIRS = (
+    os.path.join(BASE_DIR, 'movie_app/static'),
     os.path.join(BASE_DIR, "users/static"),
     os.path.join(BASE_DIR, "pins/static"),
-    os.path.join(BASE_DIR, 'movie_app/static')
+    os.path.join(BASE_DIR, 'music/static'),
 )
 
 MEDIA_URL = "/media/"
