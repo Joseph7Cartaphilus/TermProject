@@ -10,6 +10,7 @@ urlpatterns = [
     # Главная страница (Parallax Forest)
     path("profile/", views.profile, name="profile"),  # Страница профиля пользователя
     path("auth/", views.auth_view, name="auth"),
+    path('contact/', views.ContactView.as_view(), name='contact'),
 ]
 
 
